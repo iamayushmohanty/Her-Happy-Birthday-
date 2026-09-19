@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>For You ❤️</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #08080c;
+            color: #f5f1ea;
+            font-family: "Poppins", sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* -------------------------
+           BACKGROUND
+        ------------------------- */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            z-index: -10;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(255, 120, 150, 0.08), transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(150, 100, 255, 0.08), transparent 30%),
+                #08080c;
+        }
+
+        .stars {
+            position: fixed;
+            inset: 0;
+            z-index: -5;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.15;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        /* -------------------------
+           OPENING SCREEN
+        ------------------------- */
+
+        #opening {
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .opening-content {
+            max-width: 700px;
+            animation: fadeIn 2s ease;
+        }
+
+        .small-text {
+            font-size: 13px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #aaa;
+            margin-bottom: 25px;
+        }
+
+        .opening-title {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(50px, 10vw, 100px);
+            font-weight: 500;
+            line-height: 0.95;
+            margin-bottom: 25px;
+        }
+
+        .opening-title span {
+            color: #ff9bb2;
+        }
+
+        .opening-subtitle {
+            color: #aaa;
+            font-size: 15px;
+            margin-bottom: 40px;
+        }
+
+        .open-button {
+            border: 1px solid rgba(255,255,255,0.25);
+            background: rgba(255,255,255,0.05);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: 0.3s;
+        }
+
+        .open-button:hover {
+            background: white;
+            color: black;
+            transform: translateY(-3px);
+        }
+
+        /* -------------------------
+           MAIN CONTENT
+        ------------------------- */
+
+        #main {
+            display: none;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 120px 8%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-label {
+            color: #ff9bb2;
+            font-size: 12px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(45px, 7vw, 80px);
+            font-weight: 500;
+            margin-bottom: 25px;
+        }
+
+        /* -------------------------
+           BIRTHDAY
+        ------------------------- */
+
+        #birthday {
+            text-align: center;
+            align-items: center;
+        }
+
+        .birthday-title {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(60px, 12vw, 140px);
+            line-height: 0.9;
+            font-weight: 500;
+        }
+
+        .birthday-title span {
+            color: #ff9bb2;
+        }
+
+        .birthday-message {
+            max-width: 600px;
+            color: #aaa;
+            margin-top: 30px;
+            line-height: 1.8;
+        }
+
+        /* -------------------------
+           MEMORIES
+        ------------------------- */
+
+        .memories-intro {
+            max-width: 650px;
+            color: #aaa;
+            line-height: 1.8;
+            margin-bottom: 50px;
+        }
+
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .memory {
+            min-height: 250px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            background: rgba(255,255,255,0.035);
+            transition: 0.4s;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .memory:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255,155,178,0.4);
+            background: rgba(255,155,178,0.05);
+        }
+
+        .memory-number {
+            color: #ff9bb2;
+            font-size: 12px;
+            margin-bottom: auto;
+        }
+
+        .memory h3 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .memory p {
+            color: #999;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* -------------------------
+           PHOTO SECTION
+        ------------------------- */
+
+        #photos {
+            text-align: center;
+            align-items: center;
+        }
+
+        .photo-grid {
+            width: 100%;
+            max-width: 1000px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .photo {
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #181820, #29232b);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .photo:hover img {
+            transform: scale(1.06);
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 13px;
+        }
+
+        /* -------------------------
+           REASONS
+        ------------------------- */
+
+        #reasons {
+            text-align: center;
+            align-items: center;
+        }
+
+        .reason-box {
+            width: min(700px, 90%);
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px;
+            margin-top: 30px;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        #reasonText {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(30px, 5vw, 50px);
+            line-height: 1.2;
+            transition: opacity 0.3s;
+        }
+
+        .reason-button {
+            margin-top: 25px;
+            border: none;
+            padding: 13px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            background: #ff9bb2;
+            color: #16090d;
+            font-family: inherit;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .reason-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* -------------------------
+           LETTER
+        ------------------------- */
+
+        #letter {
+            align-items: center;
+            text-align: center;
+        }
+
+        .letter-container {
+            max-width: 750px;
+            padding: 50px;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.035);
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: left;
+        }
+
+        .letter-container p {
+            color: #ccc;
+            line-height: 2;
+            margin-bottom: 20px;
+        }
+
+        .signature {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 30px;
+            color: #ff9bb2;
+            margin-top: 30px;
+        }
+
+        /* -------------------------
+           FINAL
+        ------------------------- */
+
+        #final {
+            text-align: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .final-title {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(55px, 10vw, 110px);
+            line-height: 0.95;
+        }
+
+        .final-title span {
+            color: #ff9bb2;
+        }
+
+        .final-text {
+            color: #888;
+            margin-top: 30px;
+            max-width: 500px;
+            line-height: 1.8;
+        }
+
+        .heart {
+            font-size: 50px;
+            margin-top: 40px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        /* -------------------------
+           FLOATING HEARTS
+        ------------------------- */
+
+        .floating-heart {
+            position: fixed;
+            bottom: -30px;
+            font-size: 18px;
+            pointer-events: none;
+            animation: floatUp 5s linear forwards;
+            z-index: 100;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* -------------------------
+           FADE ANIMATION
+        ------------------------- */
+
+        .fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 1s ease;
+        }
+
+        .fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* -------------------------
+           MOBILE
+        ------------------------- */
+
+        @media (max-width: 700px) {
+
+            section {
+                padding: 90px 20px;
+            }
+
+            .memory-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .photo {
+                height: 350px;
+            }
+
+            .letter-container {
+                padding: 30px 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background"></div>
+    <div class="stars" id="stars"></div>
+
+
+    <!-- =========================
+         OPENING
+    ========================== -->
+
+    <section id="opening">
+
+        <div class="opening-content">
+
+            <div class="small-text">
+                A little surptise
+            </div>
+
+            <h1 class="opening-title">
+                This is for you<br>
+                <span>BABY</span>
+            </h1>
+
+            <p class="opening-subtitle">
+                So... take a moment. And open it.
+            </p>
+
+            <button class="open-button" onclick="openWebsite()">
+                Open your surprise Angelina ♡
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         MAIN WEBSITE
+    ========================== -->
+
+    <main id="main">
+
+
+        <!-- BIRTHDAY -->
+
+        <section id="birthday">
+
+            <div class="section-label">
+                Today is your day
+            </div>
+
+            <h1 class="birthday-title fade">
+                Happy Birthday<br>
+                <span>Askim</span>
+            </h1>
+
+            <p class="birthday-message fade">
+                Another year of you existing in this world...
+                and somehow I got lucky enough to be a part of it.
+                <br><br>
+                I hope this little website will
+                makes you smile.
+            </p>
+
+        </section>
+
+
+        <!-- MEMORIES -->
+
+        <section id="memories">
+
+            <div class="section-label">
+                Chapter One
+            </div>
+
+            <h2 class="section-title fade">
+                Some memories.
+            </h2>
+
+            <p class="memories-intro fade">
+                Its been 5 years since we met. and you are the most beautiful person I have ever met. I am so grateful for all the moments we've shared, the conversations, the laughs, the arguments, and all those tiny moments that somehow became memories.
+            </p>
+
+
+            <div class="memory-grid">
+
+                <div class="memory fade">
+                    <div class="memory-number">01</div>
+
+                    <h3>The Beginning</h3>
+
+                    <p>
+                        I was 14 when we met. a kid, didn't even knew how to chat, it was you i addicted then, but i understood that i'm talking to a beautiful soul. 
+                    </p>
+                </div>
+
+
+                <div class="memory fade">
+                    <div class="memory-number">02</div>
+
+                    <h3>That One Day</h3>
+
+                    <p>
+                        Jan 29 2025, is the most beautiful day of my life. I will never forget that day. It was the day we shared our heart for the first time. Thank you for coming into my life and making it so beautiful. I LOVE YOU BABY.
+                    </p>
+                </div>
+
+
+                <div class="memory fade">
+                    <div class="memory-number">03</div>
+
+                    <h3>Us</h3>
+
+                    <p>
+                        We are Beatifull, Life Is Beatifull. It's a story of two souls who met and fell in love.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PHOTOS -->
+
+        <section id="photos">
+
+            <div class="section-label">
+                Chapter Two
+            </div>
+
+            <h2 class="section-title fade">
+                Little pieces of us.
+            </h2>
+
+            <p class="memories-intro fade">
+                I LOVE YOU
+            </p>
+
+
+            <div class="photo-grid">
+
+                <div class="photo fade">
+                    <!-- Replace this with your image -->
+                    <!-- <img src="images/photo1.jpg"> -->
+
+                    <div class="photo-placeholder">
+                        <img src="img123.jpg" alt="image">
+                    </div>
+                </div>
+
+
+                <div class="photo fade">
+                    <!-- Replace this with your image -->
+                    <!-- <img src="images/photo2.jpg"> -->
+
+                    <div class="photo-placeholder">
+                        <img src="img12345.jpg" alt="img12345">
+                    </div>
+                </div>
+
+
+                <div class="photo fade">
+                    <!-- Replace this with your image -->
+                    <!-- <img src="images/photo3.jpg"> -->
+
+                    <div class="photo-placeholder">
+                        <img src="img1234.jpg" alt="img1234">
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- REASONS -->
+
+        <section id="reasons">
+
+            <div class="section-label">
+                Chapter Three
+            </div>
+
+            <h2 class="section-title fade">
+                Why you?
+            </h2>
+
+            <div class="reason-box fade">
+
+                <div id="reasonText">
+                    Click the button.
+                </div>
+
+            </div>
+
+            <button class="reason-button" onclick="nextReason()">
+                Give me another reason ♡
+            </button>
+
+        </section>
+
+
+        <!-- LETTER -->
+
+        <section id="letter">
+
+            <div class="section-label">
+                Chapter Four
+            </div>
+
+            <h2 class="section-title fade">
+                Something from me.
+            </h2>
+
+
+            <div class="letter-container fade">
+
+                <p>
+                    Hi Baby,
+                </p>
+
+                <p>
+                    Thanks again for coming into my life. I can't believe it's literally been 5 years since we met. You were my best friend, and I never thought that one day we would be together like this—from being online friends to becoming life partners. I am so grateful to have you in my life. I love you. I love you. I love you.
+                </p>
+
+                <p>
+                   I want to grow old with you. I want to see you grow old. Together, we will reach 70, baby. You will look so old, and so will I, but I'll never stop loving you. Please... I love you so much.
+                </p>
+
+                <p>
+                    One thing that i love the most about you is that i already have great old memories with you, memories from those old days of classs 10th, trying to sit beside you 😂, that momment in 2021 when you called me AYUSHHHHHHHH 🫠. man that was so cute. Then one day you blockedm me, i didn't knew you'll contact me again then that was 2 days before my birthday...., once i fought with you for a voice call, just for voice call it lasted one month then you called me when i was so happy, thinking about you since i was 14 only, 14, it's a very great age to meet someone who is going to be with you for lifetime. I'll always cherish those memories for life which will always make me so happy.
+                </p>
+
+                <p>
+                    You are the reason my life is beautiful. You make everything so beautiful. You are my life, and you are so beautiful. Thus, life is beautiful. 🌻 I love you so much, baby. You are my everything. I will always be with you and will never leave you. I will always be your support and your strength. I will always be your shoulder to cry on and will always be your friend. I will always be your lover and your partner in crime. I will always be your everything and will always be your forever.
+                </p>
+
+                <p>
+                    Happy Birthday.
+                    I hope this year gives you more reasons
+                    to smile, dream, grow and be yourself.
+                </p>
+
+                <div class="signature">
+                    — Your second heart, Ayush
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FINAL -->
+
+        <section id="final">
+
+            <div class="section-label">
+                One last thing
+            </div>
+
+            <h1 class="final-title fade">
+                Thank<br>
+                <span>You</span>
+            </h1>
+
+            <p class="final-text fade">
+                Because somewhere in this ridiculously huge universe,
+                there is someone who is very happy that you exist. Thank you for coming into my life and making it so beautiful. I LOVE YOU BABY.
+            </p>
+
+            <div class="heart">
+                🫂🌻
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        /* =========================
+           CREATE STARS
+        ========================== */
+
+        const starsContainer = document.getElementById("stars");
+
+        for (let i = 0; i < 120; i++) {
+
+            const star = document.createElement("div");
+
+            star.classList.add("star");
+
+            star.style.left = Math.random() * 100 + "%";
+            star.style.top = Math.random() * 100 + "%";
+
+            star.style.animationDelay =
+                Math.random() * 3 + "s";
+
+            starsContainer.appendChild(star);
+        }
+
+
+        /* =========================
+           OPEN WEBSITE
+        ========================== */
+
+        function openWebsite() {
+
+            const opening =
+                document.getElementById("opening");
+
+            const main =
+                document.getElementById("main");
+
+            opening.style.display = "none";
+
+            main.style.display = "block";
+
+            window.scrollTo(0, 0);
+
+            createHeartExplosion();
+
+            startHearts();
+
+            revealElements();
+        }
+
+
+        /* =========================
+           FLOATING HEARTS
+        ========================== */
+
+        function createHeart() {
+
+            const heart =
+                document.createElement("div");
+
+            heart.classList.add("floating-heart");
+
+            heart.innerHTML =
+                Math.random() > 0.5 ? "♡" : "♥";
+
+            heart.style.left =
+                Math.random() * 100 + "vw";
+
+            heart.style.fontSize =
+                (12 + Math.random() * 20) + "px";
+
+            heart.style.animationDuration =
+                (4 + Math.random() * 4) + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+
+
+        function startHearts() {
+
+            setInterval(() => {
+
+                createHeart();
+
+            }, 1200);
+
+        }
+
+
+        /* =========================
+           HEART EXPLOSION
+        ========================== */
+
+        function createHeartExplosion() {
+
+            for (let i = 0; i < 25; i++) {
+
+                setTimeout(() => {
+
+                    const heart =
+                        document.createElement("div");
+
+                    heart.classList.add("floating-heart");
+
+                    heart.innerHTML = "♥";
+
+                    heart.style.left =
+                        (40 + Math.random() * 20) + "vw";
+
+                    heart.style.bottom =
+                        "45vh";
+
+                    document.body.appendChild(heart);
+
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 5000);
+
+                }, i * 70);
+
+            }
+
+        }
+
+
+        /* =========================
+           REASONS
+        ========================== */
+
+        const reasons = [
+
+            "Because you have a perfect mindset for being a life partner.",
+
+            "Because i want to make you happy for lifetime, to make your life beautiful.",
+
+            "Because you are the one who knows me better than anyone else.",
+
+            "Because you're my kuchu puchu💋.",
+
+            "Because talking to you never feels bored.",
+
+            "Because some of my beautiful memories have you in them.",
+
+            "Because you're simply you. And that's enough."
+
+        ];
+
+        let reasonIndex = 0;
+
+
+        function nextReason() {
+
+            const text =
+                document.getElementById("reasonText");
+
+            text.style.opacity = 0;
+
+            setTimeout(() => {
+
+                text.innerText =
+                    reasons[reasonIndex];
+
+                text.style.opacity = 1;
+
+                reasonIndex++;
+
+                if (reasonIndex >= reasons.length) {
+                    reasonIndex = 0;
+                }
+
+            }, 300);
+
+        }
+
+
+        /* =========================
+           SCROLL REVEAL
+        ========================== */
+
+        function revealElements() {
+
+            const elements =
+                document.querySelectorAll(".fade");
+
+            const observer =
+                new IntersectionObserver(
+
+                    (entries) => {
+
+                        entries.forEach(entry => {
+
+                            if (entry.isIntersecting) {
+
+                                entry.target.classList.add("visible");
+
+                            }
+
+                        });
+
+                    },
+
+                    {
+                        threshold: 0.15
+                    }
+
+                );
+
+
+            elements.forEach(element => {
+
+                observer.observe(element);
+
+            });
+
+        }
+
+    </script>
+
+</body>
+</html>
